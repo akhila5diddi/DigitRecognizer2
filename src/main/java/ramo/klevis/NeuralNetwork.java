@@ -1,4 +1,4 @@
-package ramo.klevis.nn;
+package ramo.klevis;
 
 /**
  * Created by klevis.ramo on 11/27/2017.
@@ -13,11 +13,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ramo.klevis.data.IdxReader;
-import ramo.klevis.data.LabeledImage;
-import ramo.klevis.ui.UI;
 
-import java.io.IOException;
 import java.util.List;
 
 public class NeuralNetwork  {

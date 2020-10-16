@@ -1,4 +1,4 @@
-package ramo.klevis.ui;
+package ramo.klevis;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

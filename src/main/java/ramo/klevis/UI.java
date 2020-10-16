@@ -1,12 +1,9 @@
-package ramo.klevis.ui;
+package ramo.klevis;
 
 import com.mortennobel.imagescaling.ResampleFilters;
 import com.mortennobel.imagescaling.ResampleOp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ramo.klevis.cnn.ConvolutionalNeuralNetwork;
-import ramo.klevis.data.LabeledImage;
-import ramo.klevis.nn.NeuralNetwork;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;

@@ -1,4 +1,4 @@
-package ramo.klevis.data;
+package ramo.klevis;
 
 import org.apache.spark.ml.linalg.Vector;
 import org.apache.spark.ml.linalg.Vectors;

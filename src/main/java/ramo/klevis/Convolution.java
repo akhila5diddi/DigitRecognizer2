@@ -1,4 +1,4 @@
-package ramo.klevis.cnn;
+package ramo.klevis;
 
 import java.applet.*;
 import java.awt.*;

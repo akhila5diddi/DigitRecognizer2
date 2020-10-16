@@ -1,4 +1,4 @@
-package ramo.klevis.cnn;
+package ramo.klevis;
 
 import org.deeplearning4j.datasets.iterator.impl.MnistDataSetIterator;
 import org.deeplearning4j.earlystopping.EarlyStoppingConfiguration;
@@ -24,7 +24,6 @@ import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ramo.klevis.data.LabeledImage;
 
 import java.io.File;
 import java.io.IOException;
@@ -111,7 +110,7 @@ public class ConvolutionalNeuralNetwork {
         EarlyStoppingConfiguration esConf = new EarlyStoppingConfiguration.Builder()
                 .epochTerminationConditions(new MaxEpochsTerminationCondition(nEpochs))
                 .iterationTerminationConditions(new MaxTimeIterationTerminationCondition(75, TimeUnit.MINUTES))
-                .scoreCalculator(new AccuracyCalculator(
+                .scoreCalculator(new AccuracyCalculator (
                         new MnistDataSetIterator(testDataSize, testDataSize, false, false, true, 12345)))
                 .evaluateEveryNEpochs(1)
                 .modelSaver(new LocalFileModelSaver(OUT_DIR))

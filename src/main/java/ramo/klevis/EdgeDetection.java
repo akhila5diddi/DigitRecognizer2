@@ -1,4 +1,6 @@
-package ramo.klevis.cnn;
+package ramo.klevis;
+
+import ramo.klevis.Convolution;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

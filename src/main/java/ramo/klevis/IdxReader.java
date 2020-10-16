@@ -1,8 +1,7 @@
-package ramo.klevis.data;
+package ramo.klevis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ramo.klevis.ui.UI;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
