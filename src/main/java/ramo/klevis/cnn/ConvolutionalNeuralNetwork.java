@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by agibsonccc on 9/16/15.
+ *  * Co-Authored by Vineeth Chitteti, Akhila Diddi
  */
 public class ConvolutionalNeuralNetwork {
 

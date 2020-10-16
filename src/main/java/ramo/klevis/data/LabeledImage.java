@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 /**
  * Created by klevis.ramo on 11/27/2017.
+ * Co-Authored by Vineeth Chitteti, Akhila Diddi
  */
 public class LabeledImage implements Serializable {
     private final double[] meanNormalizedPixel;

@@ -8,6 +8,7 @@ import java.io.IOException;
 
 /**
  * Created by klevis.ramo on 12/7/2017.
+ * Co-Authored by Vineeth Chitteti, Akhila Diddi
  */
 public class EdgeDetection {
 

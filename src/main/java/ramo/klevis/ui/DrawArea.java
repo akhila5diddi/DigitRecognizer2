@@ -12,6 +12,7 @@ import javax.swing.border.TitledBorder;
  * Component for drawing !
  *
  * @author sylsau
+ * Co-Authored by Vineeth Chitteti, Akhila Diddi
  */
 public class DrawArea extends JComponent {
 

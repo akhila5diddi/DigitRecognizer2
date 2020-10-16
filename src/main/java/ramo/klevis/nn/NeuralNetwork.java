@@ -2,6 +2,7 @@ package ramo.klevis.nn;
 
 /**
  * Created by klevis.ramo on 11/27/2017.
+ *  * Co-Authored by Vineeth Chitteti, Akhila Diddi
  */
 
 import org.apache.spark.ml.classification.MultilayerPerceptronClassificationModel;
@@ -14,11 +15,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ramo.klevis.data.IdxReader;
 import ramo.klevis.data.LabeledImage;
+import ramo.klevis.ui.UI;
 
 import java.io.IOException;
 import java.util.List;
 
-public class NeuralNetwork {
+public class NeuralNetwork  {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(NeuralNetwork.class);
 
@@ -28,9 +30,9 @@ public class NeuralNetwork {
     public void init() {
         initSparkSession();
         if (model == null) {
-            LOGGER.info("Loading the Neural Network from saved model ... ");
+            UI.consoleLogger("Loading the Neural Network from saved model ... ");
             model = MultilayerPerceptronClassificationModel.load("resources/nnTrainedModels/ModelWith60000");
-            LOGGER.info("Loading from saved model is done");
+            UI.consoleLogger("Loading from saved model is done");
         }
     }
 
@@ -64,7 +66,7 @@ public class NeuralNetwork {
         MulticlassClassificationEvaluator evaluator = new MulticlassClassificationEvaluator()
                 .setMetricName("accuracy");
 
-        LOGGER.info("Test set accuracy = " + evaluator.evaluate(predictionAndLabels));
+        UI.consoleLogger("Test set accuracy = " + evaluator.evaluate(predictionAndLabels));
     }
 
     private void initSparkSession() {
@@ -81,6 +83,7 @@ public class NeuralNetwork {
     public LabeledImage predict(LabeledImage labeledImage) {
         double predict = model.predict(labeledImage.getFeatures());
         labeledImage.setLabel(predict);
+        UI.consoleLogger("Value predicted");
         return labeledImage;
     }
 }

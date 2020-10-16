@@ -14,6 +14,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by klevis.ramo on 11/24/2017.
+ * Co-Authored by Vineeth Chitteti, Akhila Diddi
  */
 public class Main {
 
@@ -22,7 +23,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        LOGGER.info("Application is starting ... ");
+    LOGGER.info("Application is starting ... ");
 
         //setHadoopHomeEnvironmentVariable();
         ProgressBar progressBar = new ProgressBar(mainFrame, true);

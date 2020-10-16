@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Created by klevis.ramo on 12/13/2017.
+ * Co-Authored by Vineeth Chitteti, Akhila Diddi
  */
 public class AccuracyCalculator implements ScoreCalculator<MultiLayerNetwork> {
 

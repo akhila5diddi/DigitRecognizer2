@@ -21,6 +21,7 @@ import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ramo.klevis.ui.UI;
 
 import java.io.File;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ import java.util.Map;
 
 /**
  * Created by agibsonccc on 9/16/15.
+ * Co-Authored by Vineeth Chitteti, Akhila Diddi
  */
 public class LenetMnistExample {
     private static final Logger log = LoggerFactory.getLogger(LenetMnistExample.class);
@@ -43,13 +45,13 @@ public class LenetMnistExample {
         /*
             Create an iterator using the batch size for one iteration
          */
-        log.info("Load data....");
+        UI.consoleLogger("Load data....");
         DataSetIterator mnistTrain = new MnistDataSetIterator(batchSize, true, 12345);
 
         /*
             Construct the neural network
          */
-        log.info("Build model....");
+        UI.consoleLogger("Build model....");
 
         // learning rate schedule in the form of <Iteration #, Learning Rate>
         Map<Integer, Double> lrSchedule = new HashMap<>();
@@ -130,29 +132,29 @@ public class LenetMnistExample {
         model.init();
 
 
-        log.info("Train model....");
+        UI.consoleLogger("Train model....");
         model.setListeners(new ScoreIterationListener(1));
         DataSetIterator mnistTest = null;
         for (int i = 0; i < nEpochs; i++) {
             model.fit(mnistTrain);
-            log.info("*** Completed epoch {} ***", i);
+            UI.consoleLogger("*** Completed epoch {} ***"+ String.valueOf (i  ) );
             if (mnistTest == null) {
                 mnistTest = new MnistDataSetIterator(10000, false, 12345);
             }
-            log.info("Evaluate model....");
+            UI.consoleLogger("Evaluate model....");
             Evaluation eval = model.evaluate(mnistTest);
             if (eval.accuracy() >= 0.9901) {
                 File locationToSave = new File(ouput);      //Where to save the network. Note: the file is in .zip format - can be opened externally
                 boolean saveUpdater = true;                                             //Updater: i.e., the state for Momentum, RMSProp, Adagrad etc. Save this if you want to train your network more in the future
                 ModelSerializer.writeModel(model, locationToSave, saveUpdater);
-                log.info("found ");
+                UI.consoleLogger("found");
                 break;
             }
-            log.info(eval.stats());
+            UI.consoleLogger(eval.stats());
             mnistTest.reset();
         }
 
 
-        log.info("****************Example finished********************");
+        UI.consoleLogger("****************Example finished********************");
     }
 }

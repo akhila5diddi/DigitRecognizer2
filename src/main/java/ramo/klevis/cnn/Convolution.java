@@ -13,6 +13,7 @@ import java.awt.Color.*;
  * Convolution is the code for applying the convolution operator.
  *
  * @author: Simon Horne
+ *  * Co-Authored by Vineeth Chitteti, Akhila Diddi
  */
 public class Convolution extends Thread {
 

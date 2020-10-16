@@ -5,6 +5,7 @@ import java.awt.*;
 
 /**
  * Created by klevis.ramo on 11/29/2017.
+ *  * Co-Authored by Vineeth Chitteti, Akhila Diddi
  */
 public class ProgressBar {
 

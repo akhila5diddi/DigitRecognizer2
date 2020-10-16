@@ -38,6 +38,9 @@ public class UI {
     private SpinnerNumberModel modelTestSize;
     private JSpinner testField;
     private JPanel resultPanel;
+    private  static JPanel logPanel;
+    private  static JLabel logLabel;
+
 
     public UI() throws Exception {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -109,12 +112,28 @@ public class UI {
         clear.addActionListener(e -> {
             drawArea.setImage(null);
             drawArea.repaint();
+
             drawAndDigitPredictionPanel.updateUI();
+            resultPanel.removeAll();
+            if(logLabel == null ){
+                logLabel =  new JLabel();
+
+            }
+            consoleLogger ( "Old prediction cleared" );
         });
         JPanel actionPanel = new JPanel(new GridLayout(8, 1));
         //actionPanel.add(recognizeCNN);
         actionPanel.add(recognize);
         actionPanel.add(clear);
+
+        logPanel = new JPanel ( );
+        if(logLabel == null ){
+            logLabel =  new JLabel("Log area here");
+        }
+
+
+        logPanel.add(logLabel);
+        drawAndDigitPredictionPanel.add(logPanel, 0, 0);
         drawAndDigitPredictionPanel.add(actionPanel, 0, 0);
     }
 
@@ -122,10 +141,13 @@ public class UI {
 
         drawArea = new DrawArea();
 
-        drawAndDigitPredictionPanel.add(drawArea, 1, 0);
+
+
         resultPanel = new JPanel();
         resultPanel.setLayout(new GridBagLayout());
-        drawAndDigitPredictionPanel.add(resultPanel, 1, 1);
+        drawAndDigitPredictionPanel.add(resultPanel, 0, 0);
+        drawAndDigitPredictionPanel.add(drawArea, 0, 0);
+
     }
 
     private void addTopPanel() {
@@ -140,9 +162,9 @@ public class UI {
                 SwingUtilities.invokeLater(() -> progressBar.showProgressBar("Training may take one or two minutes..."));
                 Executors.newCachedThreadPool().submit(() -> {
                     try {
-                        LOGGER.info("Start of train Neural Network");
+                        UI.consoleLogger("Start of train Neural Network");
                         neuralNetwork.train((Integer) trainField.getValue(), (Integer) testField.getValue());
-                        LOGGER.info("End of train Neural Network");
+                        UI.consoleLogger("End of train Neural Network");
                     } finally {
                         progressBar.setVisible(false);
                     }
@@ -160,9 +182,9 @@ public class UI {
                 SwingUtilities.invokeLater(() -> progressBar.showProgressBar("Training may take a while..."));
                 Executors.newCachedThreadPool().submit(() -> {
                     try {
-                        LOGGER.info("Start of train Convolutional Neural Network");
+                        UI.consoleLogger("Start of train Convolutional Neural Network");
                         convolutionalNeuralNetwork.train((Integer) trainField.getValue(), (Integer) testField.getValue());
-                        LOGGER.info("End of train Convolutional Neural Network");
+                        UI.consoleLogger("End of train Convolutional Neural Network");
                     } catch (IOException e1) {
                         LOGGER.error("CNN not trained " + e1);
                         throw new RuntimeException(e1);
@@ -260,6 +282,13 @@ public class UI {
         signature.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 20));
         signature.setForeground(Color.BLUE);
         mainPanel.add(signature, BorderLayout.SOUTH);
+    }
+    public static void consoleLogger(String logs){
+        LOGGER.info(logs);
+        if(logLabel == null){
+            logLabel = new JLabel (  );
+        }
+        logLabel.setText(logs);
     }
 
 }
