@@ -38,8 +38,6 @@ public class UI {
     private SpinnerNumberModel modelTestSize;
     private JSpinner testField;
     private JPanel resultPanel;
-    private JSplitPane pane1;
-    private JSplitPane pane2;
 
     public UI() throws Exception {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -58,10 +56,10 @@ public class UI {
 
         //addTopPanel();
 
-        drawAndDigitPredictionPanel = new JPanel(new GridLayout (2,1  ));
-
+        drawAndDigitPredictionPanel = new JPanel(new GridLayout(2, 2));
         addActionPanel();
         addDrawAreaAndPredictionArea();
+
         mainPanel.add(drawAndDigitPredictionPanel, BorderLayout.CENTER);
 
         //addSignature();
@@ -115,25 +113,19 @@ public class UI {
         });
         JPanel actionPanel = new JPanel(new GridLayout(8, 1));
         //actionPanel.add(recognizeCNN);
-//        actionPanel.add(recognize);
-//        actionPanel.add(clear);
-        JSplitPane pane1 = new JSplitPane(SwingConstants.VERTICAL, recognize, clear );
-        actionPanel.add(pane1);
-        drawAndDigitPredictionPanel.add(actionPanel);
+        actionPanel.add(recognize);
+        actionPanel.add(clear);
+        drawAndDigitPredictionPanel.add(actionPanel, 0, 0);
     }
 
     private void addDrawAreaAndPredictionArea() {
 
         drawArea = new DrawArea();
 
-        drawAndDigitPredictionPanel.add(drawArea);
+        drawAndDigitPredictionPanel.add(drawArea, 1, 0);
         resultPanel = new JPanel();
         resultPanel.setLayout(new GridBagLayout());
-        //pane2.add(pane1, resultPanel);
-        drawAndDigitPredictionPanel.add(resultPanel);
-        //pane2 = new JSplitPane(SwingConstants.VERTICAL, drawArea, resultPanel );
-        drawAndDigitPredictionPanel.add(pane2);
-
+        drawAndDigitPredictionPanel.add(resultPanel, 1, 1);
     }
 
     private void addTopPanel() {
